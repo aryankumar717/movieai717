@@ -17,7 +17,9 @@ app.use(express.json());
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'AI Movie Recommendation API' });
 });
-
+app.get('/', (req, res) => {
+  res.send('Backend is running');
+});
 app.use('/api/recommendations', recommendationsRouter);
 
 async function startServer() {

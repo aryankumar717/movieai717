@@ -7,6 +7,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // Backend base URL from Vercel env
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
   const handleSubmit = async (e) => {
@@ -22,16 +23,14 @@ function App() {
     setRecommendations('');
 
     try {
-      const response = await fetch(
-        `${API_URL}/api/recommendations/recommend`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ input: input.trim() }),
-        }
-      );
+      // ✅ CORRECT ENDPOINT (matches backend)
+      const response = await fetch(`${API_URL}/api/recommendations`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ input: input.trim() }),
+      });
 
       if (!response.ok) {
         const data = await response.json();
@@ -40,15 +39,15 @@ function App() {
 
       const data = await response.json();
 
-      // ✅ FIXED: backend returns `result`
-      setRecommendations(data.result || data.recommendations || '');
+      // ✅ Backend returns { result: "..." }
+      setRecommendations(data.result || '');
     } catch (err) {
       if (
         err.message.includes('Failed to fetch') ||
         err.message.includes('NetworkError')
       ) {
         setError(
-          'Cannot connect to backend. Backend may be sleeping (Render free tier). Try again in 10 seconds.'
+          'Cannot connect to backend. Backend may be waking up (Render free tier). Please try again in a few seconds.'
         );
       } else {
         setError(err.message || 'AI is temporarily unavailable');
@@ -80,11 +79,7 @@ function App() {
               className="input-field"
               disabled={loading}
             />
-            <button
-              type="submit"
-              className="submit-btn"
-              disabled={loading}
-            >
+            <button type="submit" className="submit-btn" disabled={loading}>
               {loading ? 'Thinking...' : 'Get Recommendations'}
             </button>
           </div>

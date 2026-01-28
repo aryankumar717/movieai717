@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-
 function App() {
   const [input, setInput] = useState("");
   const [recommendations, setRecommendations] = useState("");
@@ -109,12 +108,12 @@ function App() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="e.g. Interstellar or emotional sci-fi"
+              placeholder="Describe a movie, mood, or story…"
               className="input-field"
               disabled={loading}
             />
             <button className="submit-btn" disabled={loading}>
-              {loading ? "Thinking..." : "Get Recommendations"}
+              {loading ? "Thinking… almost there!" : "Get Recommendations"}
             </button>
           </div>
         </form>
@@ -148,6 +147,27 @@ function App() {
                       {movie.explanation && (
                         <div className="explanation">
                           <strong>Explanation:</strong> {movie.explanation}
+                        </div>
+                      )}
+
+                      {movie.watchProviders && movie.watchProviders.length > 0 && (
+                        <div className="watch-section">
+                          <div className="watch-title">Where to watch</div>
+
+                          <div className="watch-providers">
+                            {movie.watchProviders.map((p, i) => (
+                              <a
+                                key={i}
+                                href={p.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="watch-provider"
+                              >
+                                <img src={p.logo} alt={p.provider} />
+                                <span>{p.provider}</span>
+                              </a>
+                            ))}
+                          </div>
                         </div>
                       )}
                     </div>

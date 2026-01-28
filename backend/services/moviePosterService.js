@@ -1,5 +1,4 @@
-
-import dotenv from 'dotenv';
+    import dotenv from 'dotenv';
 dotenv.config();
 
 const OMDB_API_KEY = process.env.OMDB_API_KEY || '';

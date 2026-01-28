@@ -1,24 +1,33 @@
-# 🎬 AI Movie Recommendation System
+🎬 AI Movie Recommendation System
 
-**LLM-based movie recommendation system built with Node.js and modern APIs.**
+An AI-first movie recommendation system powered by a Large Language Model (LLM), built with Node.js and modern web technologies.
 
-## 🏗️ Architecture
+This project focuses on understanding natural language (movie names, moods, or descriptions) and generating explainable recommendations, instead of using traditional rule-based or genre-filter approaches.
 
-- **Frontend**: React (Vite)
-- **Backend**: Node.js + Express
-- **Database**: MongoDB (storage only, not for recommendations)
-- **AI**: LLM (Groq / OpenAI – all intelligence and decision-making)
+⸻
 
-## 🧠 Core Principle: AI-First Design
+🏗️ Architecture
+	•	Frontend: React (Vite)
+	•	Backend: Node.js + Express
+	•	Database: MongoDB (used for storage/analytics only)
+	•	AI Engine: LLM (Groq / OpenAI)
 
-**The LLM is the single source of truth for ALL recommendation logic.**
+⸻
 
-- ✅ LLM understands whether input is a movie name or a description
-- ✅ LLM infers genre, tone, and intent automatically
-- ✅ LLM decides which movies to recommend
-- ✅ LLM generates human-like explanations
+🧠 Core Principle: AI-First Design
 
-## 📁 Project Structure
+The LLM is the single source of truth for all recommendation logic.
+
+	•	✅ Detects whether input is a movie name or a description
+	•	✅ Infers genre, mood, tone, and intent automatically
+	•	✅ Decides which movies to recommend
+	•	✅ Generates human-like explanations for each recommendation
+
+No hard-coded rules. No genre filters. Pure AI reasoning.
+
+⸻
+
+📁 Project Structure
 
 movie-ai/
 ├── backend/
@@ -32,6 +41,7 @@ movie-ai/
 │   ├── server.js
 │   ├── .env.example
 │   └── package.json
+│
 ├── frontend/
 │   ├── src/
 │   │   ├── App.jsx
@@ -40,22 +50,28 @@ movie-ai/
 │   │   └── index.css
 │   ├── index.html
 │   └── package.json
+│
 └── README.md
 
-## 🚀 Setup
 
-### Prerequisites
-- Node.js (v18+)
-- MongoDB (local or cloud)
-- LLM API key (Groq / OpenAI)
+⸻
 
-### Backend Setup
+🚀 Setup & Installation
 
-```bash
+🔧 Prerequisites
+	•	Node.js v18+
+	•	MongoDB (local or cloud)
+	•	LLM API key (Groq or OpenAI)
+	•	OMDb API key (for movie posters)
+
+⸻
+
+🖥 Backend Setup
+
 cd backend
 npm install
 
-Create .env file:
+Create .env file (use .env.example as reference)
 
 GROQ_API_KEY=your_llm_api_key
 OMDB_API_KEY=your_omdb_api_key
@@ -63,22 +79,43 @@ MONGODB_URI=mongodb://localhost:27017/movie-ai
 PORT=3001
 FRONTEND_URL=http://localhost:5173
 
-Start backend:
+Start backend server
 
 npm start
 
-Frontend Setup
+Backend runs at:
+
+http://localhost:3001
+
+Health check:
+
+http://localhost:3001/health
+
+
+⸻
+
+🌐 Frontend Setup
 
 cd frontend
 npm install
 npm run dev
 
+Frontend runs at:
+
+http://localhost:5173
+
+
+⸻
+
 🎯 How It Works
-	1.	User enters a movie name or description
+	1.	User enters a movie name or a natural-language description
 	2.	Backend sends raw input to the LLM
-	3.	LLM understands intent and generates recommendations
-	4.	MongoDB stores interaction (analytics only)
-	5.	Frontend displays results
+	3.	LLM interprets intent and generates recommendations
+	4.	Movie posters and streaming links are fetched
+	5.	MongoDB stores interaction data (analytics only)
+	6.	Frontend displays results with explanations and “Where to Watch” links
+
+⸻
 
 🛠️ Tech Stack
 	•	Node.js
@@ -88,11 +125,14 @@ npm run dev
 	•	LLM (Groq / OpenAI)
 	•	OMDb API
 
+⸻
+
 🔮 Future Enhancements
-	•	User history
+	•	User history & preferences
 	•	Feedback-based recommendations
-	•	Multiple LLM providers
-	•	Improved UI
+	•	Multiple LLM provider support
+	•	Faster response with caching
+	•	Improved UI & animations
 
 ⸻
 
@@ -101,3 +141,5 @@ npm run dev
 Aryan Kumar
 B.Tech CSE Student
 Passionate about AI, backend development, and real-world problem solving
+
+⸻
